@@ -1,4 +1,6 @@
-from itaas.apps.aws.views import MyRESTView
+#from itaas.apps.aws.views import MyRESTView
+
+from itaas.apps.aws import views
 from django.conf.urls.defaults import *
 
 urlpatterns = patterns('',
@@ -6,8 +8,11 @@ urlpatterns = patterns('',
     #url(r'^api/v1.0/resource/(?P<resource_id>\d+)[/]?$', login_required(MyRESTView.as_view()), name='my_rest_view'),
     #url(r'^api/v1.0/resource[/]?$', login_required(MyRESTView.as_view()), name='my_rest_view'),
 
-    url(r'^api/v1.0/resource/(?P<resource_id>\d+)[/]?$', MyRESTView.as_view(), name='my_rest_view'),
-    url(r'^api/v1.0/resource[/]?$', MyRESTView.as_view(), name='my_rest_view'),
+    url(r'^api/v1.0/resource/(?P<resource_id>\d+)[/]?$', views.MyRESTView.as_view(), name='my_rest_view'),
+    url(r'^api/v1.0/resource[/]?$', views.MyRESTView.as_view(), name='my_rest_view'),
 
+    #url(r'^api/register/$', 'auth.views.register'),
+    url(r'^api/login/$', 'itaas.apps.aws.views.login'),
 
+    url(r'^api/logout/$', views.logout),
 )
